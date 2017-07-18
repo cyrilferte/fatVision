@@ -2,8 +2,13 @@ class RestaurantsController < ApplicationController
     before_action :random
     
     def random
-    @all = Restaurant.all.count
-        @random = Restaurant.find(rand(1..@all))
+         @all = Restaurant.all.count
+        if @all > 0
+           
+            @random = Restaurant.find(rand(1..@all)) 
+        else
+            @random = "none"
+        end
     end
     def index
 
