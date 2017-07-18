@@ -11,3 +11,7 @@
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
+    $(".burger").on("click", function(){
+  $(this).toggleClass("active");
+  $(".menu").toggleClass("open");
+})

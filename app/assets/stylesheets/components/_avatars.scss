@@ -18,3 +18,22 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
 }
+
+@media screen and (max-width: 480px) {
+    .border-shadow {
+       display:none;
+    }
+    .list-item p{
+      margin-left:10px;
+      display:block;
+    }
+    .nav li{
+      width:100%;
+    }
+    .menu.open{
+      height:250px;
+    }
+    .navbar-wagon{
+      height:250px;
+    }
+}

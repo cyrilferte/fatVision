@@ -1,0 +1,8 @@
+
+ <%= simple_form_for @restaurant do |f| %>
+    <%= f.input :name, placeholder: "Restaurant Name", label: "Restaurant Name" %>
+    <%= f.input :adresse, placeholder: "Adresse", label: "Adresse" %>
+    <%= f.input :comment, placeholder: "Comment", label: "Comment" %>
+    <%= f.input :link, placeholder: "restaurant website", label: "restaurant website" %>  
+    <%= f.button :submit, "ADD", class: "btn teal  btn-block waves-effect waves-light ", style: "border:none;" %>
+ <% end %>

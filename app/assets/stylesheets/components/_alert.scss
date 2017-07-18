@@ -13,3 +13,299 @@
 .alert-warning {
   background: $red;
 }
+body{background-color:#EAE0CE;}
+
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+$cheese: desaturate(yellow, 15%);
+$buns: darken(desaturate(orange,15%),5%);
+
+@mixin beforeAfter($width, $height){
+  position: absolute;
+  content:'';
+  width: $width+px;
+  height:$height+px;
+}
+
+@mixin transition($time:0.3){
+  -webkit-transition: all $time+s;
+  transition: all $time+s;
+  -moz-transition: all $time+s;
+}
+@mixin size-pos($width,$height,$pos){
+  width:$width+px;
+  height:$height+px;
+  position:#{$pos};
+}
+
+
+.contain{
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+}
+.burger{
+  width: 50px;
+  height:20px;
+  border-bottom: 15px solid $buns;
+  border-radius: 20%;
+  margin: 20px auto;
+  cursor: pointer;
+  @include transition;
+  /* CHEESE -- Move this to its own selector for better legibility*/
+  &:before{
+    width:47px;
+    height: 4px;
+    @include beforeAfter(47,4);
+    background:$cheese;
+    border-radius: 10%;
+    margin-top: 5px;
+    margin-left: 2px;
+    z-index:11;
+    @include transition(0.3);
+    
+}
+  &:after{
+    margin-top: 0px;
+    @include beforeAfter(45,10);
+    @include transition;
+    margin-left: 2px;
+    border-radius: 15%;
+    background: darken(#996633, 15%);
+  }
+  /*&:hover{
+    & #top-bun{
+      -webkit-transform: rotate(20deg);
+      margin-top: -20px;
+      margin-left:5px;
+    }
+  }*/
+}
+#lettuce-tom{
+  @include size-pos(50,5,absolute);
+  background: -webkit-linear-gradient(left,transparent, green, transparent);
+  background: linear-gradient(left, transparent, green, transparent);
+  position: absolute;
+  margin-top: 3px;
+  z-index:1;
+  @include transition;
+  &:before{
+    @include beforeAfter(40,3);
+    background:desaturate(red,10%);
+    margin-top: -3px;
+    margin-left:5px;
+    border-radius: 30%;
+    @include transition;
+  }
+}
+/* MELTED CHEESE LINES*/
+#melt{
+  @include size-pos(7,4,absolute);
+  background: $cheese;
+  border-radius: 50%;
+  margin-top: 7px;
+  margin-left: 2px;
+  z-index:11;
+  @include transition;
+  &:before{
+    @include beforeAfter(4,6);
+    background:$cheese;
+    border-radius: 50%;
+    margin-left:11px;
+    margin-top:-2px;
+    @include transition(0.5);
+  }
+  &:after{
+    @include beforeAfter(3,6);
+    background:$cheese;
+    border-radius:50%;
+    margin-left:5px;
+    @include transition(0.5);
+  }
+}
+
+#extra-melt{
+  @include size-pos(1,0,absolute);
+  background:$cheese;
+  margin-left:45px;
+  margin-top:2px;
+  border-radius: 50%;
+  @include transition(1);
+  &:before{
+    @include beforeAfter(2,0);
+    @include transition(0.5);
+    background:$cheese;
+    margin-left:-7px;
+  }
+}
+
+#top-bun{
+  @include size-pos(50,15,absolute);
+  background: $buns;
+  z-index:11;
+  border-radius:50px 50px 0 0;
+  margin-top:-15px;
+  @include transition;
+}
+
+#seeds{
+  position: absolute;
+  z-index:111;
+  width:2px;
+  height:4px;
+  margin-left:22.5px;
+  background:white;
+  margin-top:2px;
+  border-radius:50%;
+  &:before, &:after{
+    @include beforeAfter(2,4);
+    border-radius:50%;
+    background:white;
+  }
+  &:before{
+    margin-left:-6px;
+    -webkit-transform:rotate(30deg); 
+    transform: rotate(30deg);
+  }
+  &:after{
+  margin-left:6px;
+  -webkit-transform:rotate(-30deg);
+    transform: rotate(-30deg);
+}
+ 
+}
+
+.menu{
+  width:0px;
+  overflow: hidden;
+  position: absolute;
+      left: 100px;
+    top: 30px;
+  @include transition;
+}
+ul{
+  list-style:none;
+  margin: 0;
+  padding: 0;
+  width: 400px;
+  & li{
+    cursor: pointer;
+    display: inline-block!important;
+    color: black;
+    font-family: "Poiret One", sans-serif;
+    margin: 0 10px;
+    font-weight: 100;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    @include transition(0.2);
+    border-bottom: 1px solid transparent;
+    &:hover{
+      border-bottom: 1px solid white;
+    }
+  }
+}
+
+/*ACTIVE MENU*/
+.burger.active{
+  #top-bun{
+    margin-left:55px;
+    margin-top: 30px;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  &:before{
+    -webkit-transform: rotate(5deg);
+    transform: rotate(5deg);
+  }
+  &:after{
+    margin-left:-5px;
+  }
+  #melt{
+    height:4px;
+    margin-top:5px;
+    &:before{
+      width:3px;
+      margin-top:2px;
+    }
+    &:after{
+      width:2px;
+      height:11px;
+    }
+  }
+  #extra-melt{
+    height:13px;
+    &:before{
+      height:7px;
+    }
+  }
+  #lettuce-tom{
+    -webkit-transform:rotate(10deg);
+    &:before{
+      -webkit-transform:rotate(5deg);
+      margin-left:13px;
+    }
+  }
+}
+.menu.open{
+    width: 400px;
+}
+
+/*DESCRIPTION BOX*/
+.desc{
+  max-width: 220px;
+  
+  background: white;
+  opacity: 0.6;
+  padding: 5px;
+  margin-top: 40px;
+  margin-left: 20px;
+  box-shadow: 4px 4px 0px black;
+  &:before{
+    content:'';
+    position: absolute;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid white;
+    margin-top: -20px;
+  }
+}
+p{
+  color: black;
+  font-size: 16px;
+  text-align: center;
+  font-family: sans-serif;
+  text-transform: uppercase;
+ & span{
+   font-size: 12px;
+ }
+}
+
+.list-item {
+  background: #fff;
+  box-shadow: 0 1px 2px #999;
+  font-family: sans-serif;
+  min-height: 70px;
+  line-height: 30px;
+  list-style: none;
+  margin: 10px 0;
+  padding: 20px 10px;
+  text-align: center;
+  transform: translateZ(0);
+  transition: box-shadow 0.25s ease-in;
+
+  
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+}
+ h3 {
+  font-weight: bold;
+  font-size: 23px;
+  margin-top: 0;
+}
+ p {
+  font-weight: lighter;
+  color: #999999;
+  margin-bottom: 0;
+}
