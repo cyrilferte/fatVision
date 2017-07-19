@@ -11,9 +11,13 @@ class RestaurantsController < ApplicationController
         end
     end
     def index
-
+      if params[:fat]
+        @restaurants = Restaurant.where(fat: true)
+      elsif params[:healthy]
+      @restaurants = Restaurant.where(healthy: true)
+      else
         @restaurants = Restaurant.all
-        
+      end
     end
 
   def show
@@ -57,6 +61,6 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :link, :comment, :adresse)
+    params.require(:restaurant).permit(:name, :link, :comment, :adresse, :vegetarian, :vegan, :carte_restaurant, :halal, :casher, :fat, :healthy)
   end
 end

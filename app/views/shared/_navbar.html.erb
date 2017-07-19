@@ -12,8 +12,8 @@
         <ul class="nav">
           <a href="<%= root_path %>"><li>Home</li></a>
           <a href="<%= restaurant_path(@random) %>"><li>Random</li></a>
-          <a href=""><li>Fat</li></a>
-          <a href=""><li>Healthy</li></a>
+          <a href="<%= root_path(fat: true) %>"><li>Fat</li></a>
+          <a href="<%= root_path(healthy: true) %>"><li>Healthy</li></a>
         </ul>
         </div>
     </div>
